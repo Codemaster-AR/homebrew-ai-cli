@@ -1,31 +1,22 @@
 class AiCli < Formula
-  include Language::Python::Virtualenv
-
   desc "A Terminal AI Agent running on Groq"
   homepage "https://github.com/Anay-Rustogi/ai-cli"
   url "https://github.com/codemaster-ar/ai-cli/archive/refs/tags/v5.0.0.tar.gz"
   sha256 "a883e037aaa21cea316c6d46b2396d16df2144ec715261f21b99ea03032fd2ac"
   license "MIT"
 
-  depends_on "python@3.12"
-
-  # We use a single 'all-in-one' resource approach to simplify the install
+  # We are NOT using virtualenv here to avoid the pip/sandbox errors
   def install
-    # 1. Create a virtualenv in the private libexec folder
-    venv = virtualenv_create(libexec, "python3.12")
-    
-    # 2. Manually install the big 3 dependencies into that venv
-    # This bypasses the need for individual resource blocks
-    system libexec/"bin/pip", "install", "groq", "questionary", "rich"
+    # 1. Move your script to the cellars folder
+    # IMPORTANT: Ensure "ai-cli.py" matches your filename in GitHub!
+    libexec.install "ai-cli.py"
 
-    # 3. Install your script
-    # Assuming your main file in the zip is named 'aicli.py' or 'main.py'
-    # Change 'aicli.py' below if your file is named something else!
-    libexec.install "aicli.py" 
-
-    # 4. Create the 'ai-cli' executable that points to the venv
-    (bin/"ai-cli").write_env_script libexec/"bin/python", "PYTHONPATH" => libexec,
-      :args => [libexec/"aicli.py", "$@"]
+    # 2. Create a command in /opt/homebrew/bin/ai-cli
+    # This runs your script using the system's python3
+    (bin/"ai-cli").write <<~EOS
+      #!/bin/bash
+      exec python3 "#{libexec}/ai-cli.py" "$@"
+    EOS
   end
 
   test do
