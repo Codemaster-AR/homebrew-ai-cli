@@ -14,6 +14,8 @@ class AiCli < Formula
   end
 
   test do
-    system "#{bin}/ai-cli", "--version"
+    # Simple test to see if it runs
+    # Note: might need to mock input if it starts interactive mode
+    system "#{bin}/ai-cli", "--help"
   end
 end
