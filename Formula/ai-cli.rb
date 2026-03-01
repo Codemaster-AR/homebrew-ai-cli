@@ -1,7 +1,7 @@
 class AiCli < Formula
   include Language::Python::Virtualenv
 
-  desc "A Terminal AI Agent running on Groq"a
+  desc "A Terminal AI Agent running on Groq"
   homepage "https://github.com/Anay-Rustogi/ai-cli"
   url "https://github.com/codemaster-ar/ai-cli/archive/refs/tags/v3.0.0.tar.gz"
   sha256 "969ff25d97fac53160c398771d77d826233045e9aed1b64f5edff9643a471825"
