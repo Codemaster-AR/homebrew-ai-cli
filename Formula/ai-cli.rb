@@ -4,7 +4,7 @@ class AiCli < Formula
   desc "A Terminal AI Agent running on Groq"
   homepage "https://github.com/Anay-Rustogi/ai-cli"
   url "https://github.com/codemaster-ar/ai-cli/archive/refs/tags/v4.0.0.tar.gz"
-  sha256 "c9e204c416f21529fd147072119fba10fb3fd6f76e9f5e7d5d41e0ee1587b8cf"
+  sha256 "a883e037aaa21cea316c6d46b2396d16df2144ec715261f21b99ea03032fd2ac"
   license "MIT"
 
   depends_on "python@3.12"
