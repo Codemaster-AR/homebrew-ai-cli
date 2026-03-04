@@ -1,8 +1,8 @@
 class AiCli < Formula
   desc "A Terminal AI Agent running on Groq"
   homepage "https://github.com/Anay-Rustogi/ai-cli"
-  url "https://github.com/codemaster-ar/ai-cli/archive/refs/tags/v5.0.0.tar.gz"
-  sha256 "41eda09d532f4f3de2fb36a7f9567160d714db41f47bab5ef3a47972ef99ed48"
+  url "https://github.com/codemaster-ar/ai-cli/archive/refs/tags/v7.0.0.tar.gz"
+  sha256 "d5f77057d1c83cd3cc7f7b5827f32f997e582a6cbecc386348c1089c399c6c2d"
   license "MIT"
 
   # This ensures Homebrew installs Python 3.12
