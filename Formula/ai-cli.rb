@@ -5,7 +5,7 @@ class AiCli < Formula
   sha256 "d5f77057d1c83cd3cc7f7b5827f32f997e582a6cbecc386348c1089c399c6c2d"
   license "MIT"
 
-  # This ensures Homebrew installs Python 3.12
+  # This line automatically downloads/installs Python 3.12 if the user doesn't have it
   depends_on "python@3.12"
 
   def install
@@ -22,10 +22,10 @@ class AiCli < Formula
       # Use the absolute path to the Homebrew Python version
       PYTHON_BIN="#{python_exe}"
       
-      # Check for external dependencies
-      $PYTHON_BIN -c "import groq, questionary, rich, httpx" > /dev/null 2>&1 || {
-        echo "==> Missing dependencies detected. Installing groq, questionary, rich, and httpx..."
-        $PYTHON_BIN -m pip install --upgrade groq questionary rich httpx
+      # Check and install dependencies (Added 'requests' to both lines)
+      $PYTHON_BIN -c "import groq, questionary, rich, httpx, requests" > /dev/null 2>&1 || {
+        echo "==> Missing dependencies detected. Installing groq, questionary, rich, httpx, and requests..."
+        $PYTHON_BIN -m pip install --upgrade groq questionary rich httpx requests
       }
 
       export PYTHONPATH="#{libexec}:$PYTHONPATH"
@@ -36,7 +36,6 @@ class AiCli < Formula
   end
 
   test do
-    # Verify the shim points to a valid python
     assert_predicate bin/"ai-cli", :exist?
   end
 end
